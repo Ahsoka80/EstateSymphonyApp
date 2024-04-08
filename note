@@ -1,0 +1,23 @@
+Installation des dépendances
+
+//gluestack.
+npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
+
+//react-native
+npm i react-native@0.73.6.
+
+//formik
+npm install formik
+
+//yup
+npm i yup
+
+//react-navigator
+npm install @react-navigation/native
+
+
+//CLI Expo
+npx create-expo-app nom-du-projet
+
+//Start projet
+npx expo start
