@@ -1,9 +1,9 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import * as React from 'react'
-import { FlatList } from '@gluestack-ui/themed'
+import { FlatList, ScrollView } from '@gluestack-ui/themed'
 import { getPropertiesArchived, getPropertiesByStatus } from '../../../../utils/api/properties';
 import { getAllProperties } from '../../../../utils/api/properties';
-import { Card, Title } from 'react-native-paper';
+import { Card, Searchbar, Title } from 'react-native-paper';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -16,41 +16,58 @@ const data2 = [
 
 const Gestion = () => {
 
-    const [properties, setAllProperties] = useState([]);
-    const [propertiesByStatus, setPropertiesByStatus] = useState([]);
+  const [searchQuery, setSearchQuery] = React.useState(''); 
 
-    useEffect(() => {
-        getAllProperties().then(data => { setAllProperties(data) });
-    }, []);
+  const [properties, setAllProperties] = useState([]);
+  const [propertiesByStatus, setPropertiesByStatus] = useState([]);
+
+  useEffect(() => {
+      getAllProperties()
+      .then(data => { 
+        setAllProperties(data) 
+      });
+  }, []);
     
-    
-    const renderItem = ({ item }) => (
-          <Card style={styles.card}>
-            <Card.Content>
-              <Title>{item.price}</Title>
-            </Card.Content>
-          </Card>
-    )
-  return (
-    <View >
-       <FlatList
-            data={properties}
-            renderItem={renderItem}
-            keyExtractor={item => item.id.toString()}
+  const renderItem = ({ item }) => (
+    <Card style={styles.card}>
+      <Card.Content>
+        <Title>{item.price}</Title>
+      </Card.Content>
+    </Card>
+  );
+  
+    return (
+      <ScrollView style={styles.container}>
+        <Searchbar
+          style={styles.search}
+          placeholder="Rechercher un bien"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
         />
-    </View>
-  )
-}
+        <FlatList
+          data={properties}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()} // Assurez-vous que 'id' est une chaîne de caractères
+        />
+    </ScrollView>
+    );
+  };
+  
 
 export default Gestion
 
 const styles = StyleSheet.create({
     container: {
-        margin: 30,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        color: '#ff0',
+      flex: 1,
+      backgroundColor: '#fff',
     },
+    card: {
+      margin: 20
+    },
+    search: {
+      margin: 20,
+      backgroundColor: '#ff0',
+      color: '#555555',
+    }
+    
   });

@@ -1,4 +1,5 @@
-import { Button, ButtonText, View } from "@gluestack-ui/themed";
+import { Textarea, TextareaInput, View } from "@gluestack-ui/themed";
+import { Button } from "react-native-paper";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { StyleSheet, Text, TextInput } from "react-native"
@@ -92,18 +93,16 @@ const Contact = () => {
 
           {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
 
-          <TextInput
-            style={styles.input}
-            onChangeText={handleChange('message')}
-            onBlur={handleBlur('message')}
-            value={values.password}
-            placeholder="Message"
-          />
+          <Textarea
+            style={styles.Textarea}
+          >
+            <TextareaInput placeholder="Votre message" />
+          </Textarea>
 
           {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
 
-          <Button size="sm">
-            <ButtonText>Envoyer</ButtonText>
+          <Button style= {styles.bouton} mode="contained" onPress={() => console.log('Pressed')} >
+            Se connecter
           </Button>
 
         </View>
@@ -122,18 +121,28 @@ const styles = StyleSheet.create({
     
   },
   formContainer: {
+    marginTop: 50,
     alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingTop: 20,
   },
   input: {
-    marginTop: 15,
     marginBottom: 15,
-    backgroundColor: '#fff', // couleur de fond des cartes
-    width: 400,
+    borderWidth: 1,
+    width: 350,
     height: 40,
-    borderRadius: 5, // bord arrondi
-    elevation: 1, // ombre
+    borderRadius: 5,
+    elevation: 1,
+  },
+  bouton:{
+    margin: 10,
+    backgroundColor: '#555555',
+  },
+  Textarea:{
+    marginBottom: 15,
+    borderWidth: 1,
+    width: 350,
+    height: 150,
+    borderRadius: 5,
+    elevation: 1,
   },
   error: {
     color: 'red',

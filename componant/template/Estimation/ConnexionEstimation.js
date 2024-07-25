@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { Button } from 'react-native-paper';
-import { ButtonText } from '@gluestack-ui/themed';
 
 const ConnexionEstimation = () => {
     return (

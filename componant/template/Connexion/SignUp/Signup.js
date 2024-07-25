@@ -17,13 +17,13 @@ const Signup = () => {
     return (
       <View style={styles.container}>
         <Formik
-        initialValues={{ firstName: '', lastName: '', email: '', confirmEmail: '', password: '', confirmPassword: '' }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          // Submit function, you can do whatever you want with form values here
-          console.log(values);
-        }}
-      >
+          initialValues={{ firstName: '', lastName: '', email: '', confirmEmail: '', password: '', confirmPassword: '' }}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            // Submit function, you can do whatever you want with form values here
+            console.log(values);
+          }}
+        >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
 
           <View style={styles.formContainer}>
